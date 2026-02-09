@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LitTrack - Book Discovery & Reading Tracker</title>
+    <meta name="description" content="A personalized book recommendation and tracking app.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script type="module" src="js/main.js"></script>
+</head>
+
+<body>
+    <header class="app-header">
+        <div class="container header-content">
+            <h1 class="logo">LitTrack</h1>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search books, authors, ISBNs...">
+                <button id="search-button">Search</button>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active" data-view="home">Home</a>
+                <a href="#" class="nav-link" data-view="library">My Library</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="search-results" class="results-grid hidden">
+            <!-- Search results will appear here -->
+        </section>
+
+        <!-- Book Details Modal -->
+        <dialog id="book-modal">
+            <div class="modal-content">
+                <button id="close-modal" class="close-btn">&times;</button>
+                <div id="modal-body">
+                    <!-- Book details will be injected here -->
+                </div>
+            </div>
+        </dialog>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 LitTrack. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
