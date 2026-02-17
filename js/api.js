@@ -3,10 +3,7 @@ const NYT_BASE_URL = 'https://api.nytimes.com/svc/books/v3/lists/current/hardcov
 const NYT_API_KEY = '7dZurFNJ1lCUzfzG4gM5NdWyfHzzutrIeWY1H7c9IUDQ6UGN';
 const GOOGLE_API_KEY = 'AIzaSyDMg3F1qUmk3hyvgGSrhiI2LFPGyOj2NFQ';
 
-/**
- * Searches for books using the Google Books API.
- * ... (existing searchBooks) ...
- */
+
 
 /**
  * Fetches NYT Best Sellers.

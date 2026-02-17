@@ -19,13 +19,18 @@
 <body>
     <header class="app-header">
         <div class="container header-content">
-            <h1 class="logo">LitTrack</h1>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Search books, authors, ISBNs...">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <h1 class="logo">📚 LitTrack</h1>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+
+            <div class="search-bar" role="search">
+                <input type="text" id="search-input" placeholder="Search books, authors, ISBNs..."
+                    aria-label="Search for books by title, author, or ISBN">
                 <button id="search-button">Search</button>
             </div>
-            <nav class="main-nav">
-                <a href="#" class="nav-link active" data-view="home">Home</a>
+            <nav class="main-nav" aria-label="Main Navigation">
+                <a href="#" class="nav-link active" data-view="home" aria-current="page">Home</a>
                 <a href="#" class="nav-link" data-view="library">My Library</a>
             </nav>
         </div>
@@ -33,38 +38,41 @@
 
     <main class="container">
         <!-- Best Sellers Section -->
-        <section id="best-sellers">
-            <h2 class="section-title">New York Times Best Sellers</h2>
-            <div id="best-sellers-list" class="results-grid">Loading top books...</div>
+        <section id="best-sellers" aria-labelledby="best-sellers-title">
+            <h2 id="best-sellers-title" class="section-title">New York Times Best Sellers</h2>
+            <div id="best-sellers-list" class="results-grid" aria-live="polite">Loading top books...</div>
         </section>
 
-        <section id="search-results" class="results-grid hidden">
+        <section id="search-results" class="results-grid hidden" aria-live="polite" aria-label="Search Results">
             <!-- Search results will appear here -->
         </section>
 
         <!-- Library View -->
-        <section id="library-view" class="library-container hidden">
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="reading">Currently Reading</button>
-                <button class="tab-btn" data-tab="want-to-read">Want to Read</button>
-                <button class="tab-btn" data-tab="read">Read</button>
+        <section id="library-view" class="library-container hidden" aria-label="My Library">
+            <div class="tabs" role="tablist" aria-label="Library Storage Shelves">
+                <button id="reading-tab" class="tab-btn active" data-tab="reading" role="tab" aria-selected="true"
+                    aria-controls="reading">Currently Reading</button>
+                <button id="want-to-read-tab" class="tab-btn" data-tab="want-to-read" role="tab" aria-selected="false"
+                    aria-controls="want-to-read">Want to Read</button>
+                <button id="read-tab" class="tab-btn" data-tab="read" role="tab" aria-selected="false"
+                    aria-controls="read">Read</button>
             </div>
 
-            <div id="reading" class="tab-content active">
+            <div id="reading" class="tab-content active" role="tabpanel" aria-labelledby="reading-tab">
                 <div id="reading-list" class="book-list"></div>
             </div>
-            <div id="want-to-read" class="tab-content hidden">
+            <div id="want-to-read" class="tab-content hidden" role="tabpanel" aria-labelledby="want-to-read-tab">
                 <div id="want-list" class="book-list"></div>
             </div>
-            <div id="read" class="tab-content hidden">
+            <div id="read" class="tab-content hidden" role="tabpanel" aria-labelledby="read-tab">
                 <div id="read-list" class="book-list"></div>
             </div>
         </section>
 
         <!-- Book Details Modal -->
-        <dialog id="book-modal">
+        <dialog id="book-modal" aria-modal="true" aria-labelledby="modal-title">
             <div class="modal-content">
-                <button id="close-modal" class="close-btn">&times;</button>
+                <button id="close-modal" class="close-btn" aria-label="Close details">&times;</button>
                 <div id="modal-body">
                     <!-- Book details will be injected here -->
                 </div>

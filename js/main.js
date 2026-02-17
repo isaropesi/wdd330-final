@@ -1,11 +1,35 @@
 import { searchBooks, getBookDetails, getBestSellers, searchByISBN } from './api.js';
 import { bookCardTemplate, bookDetailsTemplate, libraryBookTemplate } from './templates.js';
-import { qs, onClick, debounce } from './utils.js';
+import { qs, onClick, debounce, initTheme, toggleTheme } from './utils.js';
 import { getLibrary, saveBook, removeBook, updateProgress } from './storage.js';
 
 // Elements
 const searchInput = qs('#search-input');
 const searchButton = qs('#search-button');
+const themeToggleBtn = qs('#theme-toggle');
+// ... existing elements ...
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+
+    // Set initial button icon based on theme
+    if (themeToggleBtn) {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        themeToggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    loadBestSellers();
+});
+
+// Event Listeners
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const newTheme = toggleTheme();
+        themeToggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+}
+// ... existing listeners ...
 const resultsContainer = qs('#search-results');
 const bestSellersContainer = qs('#best-sellers');
 const bestSellersList = qs('#best-sellers-list');
@@ -15,16 +39,6 @@ const modalBody = qs('#modal-body');
 const closeModalBtn = qs('#close-modal');
 const navLinks = document.querySelectorAll('.nav-link');
 const tabBtns = document.querySelectorAll('.tab-btn');
-
-// State
-let currentBook = null;
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    loadBestSellers();
-});
-
-// Event Listeners
 if (searchButton) {
     searchButton.addEventListener('click', handleSearch);
 }

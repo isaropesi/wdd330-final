@@ -15,6 +15,36 @@ export function debounce(func, wait) {
 }
 
 /**
+ * Initializes the theme based on local storage or system preference.
+ */
+export function initTheme() {
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme');
+    
+    // Check for system preference if no saved theme
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+}
+
+/**
+ * Toggles between light and dark mode.
+ */
+export function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    return newTheme;
+}
+
+/**
  * Get an element from the DOM by selector.
  * @param {string} selector - The CSS selector.
  * @returns {HTMLElement} - The DOM element.
