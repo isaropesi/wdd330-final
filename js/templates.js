@@ -1,4 +1,3 @@
-// ... existing imports ...
 
 export function bookCardTemplate(book) {
     const info = book.volumeInfo || book; // Handle API result vs stored simplified object

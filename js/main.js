@@ -7,7 +7,8 @@ import { getLibrary, saveBook, removeBook, updateProgress } from './storage.js';
 const searchInput = qs('#search-input');
 const searchButton = qs('#search-button');
 const themeToggleBtn = qs('#theme-toggle');
-// ... existing elements ...
+// State
+let currentBook = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,7 +30,7 @@ if (themeToggleBtn) {
         themeToggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     });
 }
-// ... existing listeners ...
+
 const resultsContainer = qs('#search-results');
 const bestSellersContainer = qs('#best-sellers');
 const bestSellersList = qs('#best-sellers-list');
@@ -297,7 +298,6 @@ function attachLibraryListeners() {
     document.querySelectorAll('.update-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = e.target.dataset.id;
-            // Find the sibling input
             const input = e.target.parentElement.querySelector('.page-input');
             if (input) {
                 const newPage = input.value;
